@@ -438,6 +438,48 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1477945093783449');
 fbq('track', 'PageView');
 </script>
+<div id="social-proof-toast" style="position: fixed; bottom: 20px; left: 20px; background: white; color: #333; padding: 12px 16px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: sans-serif; font-size: 14px; z-index: 9999; display: none; transition: opacity 0.5s ease; border-left: 4px solid #10B981;">
+  <span id="toast-text" style="font-weight: 500;"></span>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const buyers = [
+      { name: "Catalina", city: "Santiago" },
+      { name: "Matías", city: "Viña del Mar" },
+      { name: "Valentina", city: "Concepción" },
+      { name: "Diego", city: "Antofagasta" },
+      { name: "Camila", city: "Valparaíso" },
+      { name: "Benjamín", city: "Temuco" },
+      { name: "Josefa", city: "La Serena" },
+      { name: "Vicente", city: "Rancagua" }
+    ];
+
+    const toast = document.getElementById("social-proof-toast");
+    const toastText = document.getElementById("toast-text");
+
+    function showNotification() {
+      const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
+      toastText.innerHTML = `🔥 <strong>${randomBuyer.name}</strong> de ${randomBuyer.city} acaba de adquirir el Ebook.`;
+     
+      toast.style.display = "block";
+      toast.style.opacity = "1";
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 500);
+      }, 4000); // El cartel se muestra durante 4 segundos y luego se oculta
+    }
+
+    // Muestra la primera notificación a los 5 segundos de cargar la página
+    setTimeout(showNotification, 5000);
+
+    // Se repite de manera infinita cada 15 segundos mostrando combinaciones aleatorias
+    setInterval(showNotification, 15000);
+  });
+</script>
 </head>
 <body>
 
